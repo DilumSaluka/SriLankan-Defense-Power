@@ -28,6 +28,14 @@
         body { background-color: #070a07; color: #d1d5db; font-family: 'Rajdhani', 'Segoe UI', sans-serif; }
         * { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
         input, textarea, [contenteditable] { -webkit-user-select: text; -moz-user-select: text; -ms-user-select: text; user-select: text; }
+        /* Device optimization — every screen */
+        @media (max-width: 768px) {
+            .hero-outline { font-size: clamp(50px, 22vw, 100px) !important; }
+            .parallax-bg { display: none; }
+        }
+        .overflow-x-auto { -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+        img { max-width: 100%; height: auto; }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
         .font-heading { font-family: 'Oswald', 'Arial Narrow', sans-serif; }
         .font-body { font-family: 'Rajdhani', 'Segoe UI', sans-serif; }
         .font-mono { font-family: 'Share Tech Mono', 'Consolas', monospace; }
@@ -5858,12 +5866,13 @@ firstTd.innerHTML=`<img src="${c.p}" alt="${c.nm}" class="w-8 h-8 rounded-full o
 <!-- HorizonX + React Bits — particle field & card spotlight -->
 <script>
 (function(){
-  // Hero particles (lightweight ReactBits-inspired)
+  // Hero particles — fewer on mobile for 60fps
   const canvas=document.getElementById('heroParticles');
   if(canvas){
     const ctx=canvas.getContext('2d');
     let w,h,dpr,particles=[];
-    const N=80;
+    const isMobileHero=window.innerWidth < 768;
+    const N=isMobileHero ? 35 : 80;
     function resize(){ dpr=Math.min(window.devicePixelRatio||1,2); w=canvas.clientWidth; h=canvas.clientHeight; canvas.width=w*dpr; canvas.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
     function rnd(a,b){ return a+Math.random()*(b-a); }
     function init(){
@@ -5892,12 +5901,13 @@ firstTd.innerHTML=`<img src="${c.p}" alt="${c.nm}" class="w-8 h-8 rounded-full o
     function fit(){ canvas.style.width='100%'; canvas.style.height='100%'; }
     fit();
   }
-  // Global field — visible, slow drift + connections
+  // Global field — sparser on mobile
   const gCanvas=document.getElementById('globalParticles');
   if(gCanvas){
     const gCtx=gCanvas.getContext('2d');
     let gw,gh,gdpr,gParts=[];
-    const GN=70;
+    const isMobileGlobal=window.innerWidth < 768;
+    const GN=isMobileGlobal ? 22 : 70;
     function gResize(){ gdpr=Math.min(window.devicePixelRatio||1,2); gw=window.innerWidth; gh=window.innerHeight; gCanvas.width=gw*gdpr; gCanvas.height=gh*gdpr; gCtx.setTransform(gdpr,0,0,gdpr,0,0); }
     function gRnd(a,b){ return a+Math.random()*(b-a); }
     function gInit(){ gResize(); gParts=[]; for(let i=0;i<GN;i++) gParts.push({x:gRnd(0,gw), y:gRnd(0,gh), vx:gRnd(-0.18,0.18), vy:gRnd(-0.14,0.14), r:gRnd(1.0,1.9), a:gRnd(0.22,0.52)}); }
@@ -5938,6 +5948,8 @@ firstTd.innerHTML=`<img src="${c.p}" alt="${c.nm}" class="w-8 h-8 rounded-full o
     requestAnimationFrame(spotlight);
   }
   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) spotlight();
+  // device: lazy-load offscreen images for mobile data
+  document.querySelectorAll('img:not([loading])').forEach(img=>{ if(!img.closest('#hero')) img.loading='lazy'; });
 })();
 </script>
 
