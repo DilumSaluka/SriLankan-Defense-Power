@@ -130,23 +130,29 @@
             </div>
         </a>
         <nav class="hidden lg:flex items-center gap-7">
-            <a href="#mod" class="nav-link">MINISTRY</a>
-            <a href="#army" class="nav-link">ARMY</a>
-            <a href="#navy" class="nav-link">NAVY</a>
-            <a href="#airforce" class="nav-link">AIR FORCE</a>
-            <a href="#police" class="nav-link">POLICE</a>
+            <a href="#mod" class="nav-link" data-en="MINISTRY" data-si="අමාත්‍යාංශය">MINISTRY</a>
+            <a href="#army" class="nav-link" data-en="ARMY" data-si="යුද හමුදාව">ARMY</a>
+            <a href="#navy" class="nav-link" data-en="NAVY" data-si="නාවික හමුදාව">NAVY</a>
+            <a href="#airforce" class="nav-link" data-en="AIR FORCE" data-si="ගුවන් හමුදාව">AIR FORCE</a>
+            <a href="#police" class="nav-link" data-en="POLICE" data-si="පොලිසිය">POLICE</a>
         </nav>
-        <button id="mobileMenuBtn" class="lg:hidden text-gray-300 hover:text-military-400 p-2 transition-colors" aria-label="Menu">
+        <div class="flex items-center gap-2">
+            <button id="translateBtn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-military-900/50 border border-military-700 text-military-300 text-xs font-mono tracking-widest hover:bg-military-800/50 hover:text-white transition-colors" aria-label="Translate">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+                <span id="translateLabel">සිං</span>
+            </button>
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-300 hover:text-military-400 p-2 transition-colors" aria-label="Menu">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
+            </button>
+        </div>
     </div>
     <div id="mobileMenu" class="hidden lg:hidden border-t border-military-800/40 bg-[#070a07]/95 backdrop-blur-md">
         <nav class="px-4 py-3 flex flex-col gap-1">
-            <a href="#mod" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors">MINISTRY</a>
-            <a href="#army" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors">ARMY</a>
-            <a href="#navy" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors">NAVY</a>
-            <a href="#airforce" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors">AIR FORCE</a>
-            <a href="#police" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors">POLICE</a>
+            <a href="#mod" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors" data-en="MINISTRY" data-si="අමාත්‍යාංශය">MINISTRY</a>
+            <a href="#army" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors" data-en="ARMY" data-si="යුද හමුදාව">ARMY</a>
+            <a href="#navy" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors" data-en="NAVY" data-si="නාවික හමුදාව">NAVY</a>
+            <a href="#airforce" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors" data-en="AIR FORCE" data-si="ගුවන් හමුදාව">AIR FORCE</a>
+            <a href="#police" class="px-3 py-2 rounded-lg font-mono text-sm tracking-widest text-gray-300 hover:bg-military-900/60 hover:text-military-300 transition-colors" data-en="POLICE" data-si="පොලිසිය">POLICE</a>
         </nav>
     </div>
 </header>
@@ -165,36 +171,36 @@
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-military-900/40 border border-military-700/30 backdrop-blur text-[10px] font-mono tracking-[0.25em] text-military-400 mb-6 reveal">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> MINISTRY OF DEFENCE · SRI LANKA — PUBLIC RECORD DOSSIER
         </div>
-        <h1 class="font-heading text-5xl md:text-7xl lg:text-[84px] font-bold text-white tracking-[-0.02em] leading-[0.9] reveal">SRI LANKAN<br><span class="shiny-text">DEFENSE POWER</span></h1>
-        <p class="text-gray-400 max-w-2xl mx-auto mt-6 text-[15px] leading-relaxed reveal delay-100">The complete picture of Sri Lanka's defence establishment — Army, Navy, Air Force, Police and the agencies of the Ministry of Defence that keep the nation secure. <span class="text-gray-500">Compiled from public records. Not for operational use.</span></p>
+        <h1 class="font-heading text-5xl md:text-7xl lg:text-[84px] font-bold text-white tracking-[-0.02em] leading-[0.9] reveal" data-en="SRI LANKAN DEFENSE POWER" data-si="ශ්‍රී ලාංකික ආරක්ෂක බලය">SRI LANKAN<br><span class="shiny-text">DEFENSE POWER</span></h1>
+        <p class="text-gray-400 max-w-2xl mx-auto mt-6 text-[15px] leading-relaxed reveal delay-100" data-en="The complete picture of Sri Lanka's defence establishment — Army, Navy, Air Force, Police and the agencies of the Ministry of Defence that keep the nation secure. Compiled from public records. Not for operational use." data-si="ශ්‍රී ලංකාවේ ආරක්ෂක ආයතනයේ සම්පූර්ණ චිත්‍රය — යුද්ධ, නාවික, ගුවන්, පොලිස් සහ ආරක්ෂක අමාත්‍යාංශයේ ආයතන. පොදු වාර්තා වලින් සම්පාදිතයි. මෙහෙයුම් භාවිතය සඳහා නොවේ.">The complete picture of Sri Lanka's defence establishment — Army, Navy, Air Force, Police and the agencies of the Ministry of Defence that keep the nation secure. <span class="text-gray-500">Compiled from public records. Not for operational use.</span></p>
         <div class="flex flex-wrap justify-center gap-3 mt-8 reveal delay-200">
-            <a href="#army" class="group relative px-7 py-3 bg-military-700 hover:bg-military-600 text-white font-heading font-semibold tracking-wider rounded-full transition-all overflow-hidden"><span class="relative z-10 flex items-center gap-2">EXPLORE THE BRANCHES <span class="group-hover:translate-x-1 transition-transform">→</span></span><span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span></a>
-            <a href="#mod" class="px-7 py-3 rounded-full border border-military-700/60 hover:border-military-600 hover:bg-military-900/40 text-military-300 font-heading font-semibold tracking-wider transition-colors backdrop-blur">MINISTRY OF DEFENCE</a>
+            <a href="#army" class="group relative px-7 py-3 bg-military-700 hover:bg-military-600 text-white font-heading font-semibold tracking-wider rounded-full transition-all overflow-hidden" data-en="EXPLORE THE BRANCHES →" data-si="අංශ ගවේෂණය කරන්න →">EXPLORE THE BRANCHES <span class="group-hover:translate-x-1 transition-transform">→</span></a>
+            <a href="#mod" class="px-7 py-3 rounded-full border border-military-700/60 hover:border-military-600 hover:bg-military-900/40 text-military-300 font-heading font-semibold tracking-wider transition-colors backdrop-blur" data-en="MINISTRY OF DEFENCE" data-si="ආරක්ෂක අමාත්‍යාංශය">MINISTRY OF DEFENCE</a>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 mt-14 max-w-5xl mx-auto">
             <div class="reveal delay-100 hero-stat rounded-2xl p-4 md:p-5 text-center">
                 <div class="font-heading text-2xl md:text-3xl font-bold text-white tracking-tight" data-count="200000">0</div>
-                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5">TOTAL PERSONNEL</div>
+                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5" data-en="TOTAL PERSONNEL" data-si="මුළු පිරිස්">TOTAL PERSONNEL</div>
                 <div class="text-[10px] text-gray-600 font-mono mt-0.5">est. active</div>
             </div>
             <div class="reveal delay-200 hero-stat rounded-2xl p-4 md:p-5 text-center">
                 <div class="font-heading text-2xl md:text-3xl font-bold text-white tracking-tight" data-count="271">0</div>
-                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5">NAVAL VESSELS</div>
+                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5" data-en="NAVAL VESSELS" data-si="නාවික යාත්‍රා">NAVAL VESSELS</div>
                 <div class="text-[10px] text-gray-600 font-mono mt-0.5">fleet</div>
             </div>
             <div class="reveal delay-300 hero-stat rounded-2xl p-4 md:p-5 text-center">
                 <div class="font-heading text-2xl md:text-3xl font-bold text-white tracking-tight" data-count="160">0</div>
-                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5">AIRCRAFT</div>
+                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5" data-en="AIRCRAFT" data-si="ගුවන් යානා">AIRCRAFT</div>
                 <div class="text-[10px] text-gray-600 font-mono mt-0.5">160+</div>
             </div>
             <div class="reveal delay-400 hero-stat rounded-2xl p-4 md:p-5 text-center">
                 <div class="font-heading text-2xl md:text-3xl font-bold text-white tracking-tight" data-count="3">0</div>
-                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5">ARMED FORCES</div>
+                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5" data-en="ARMED FORCES" data-si="සන්නද්ධ හමුදා">ARMED FORCES</div>
                 <div class="text-[10px] text-gray-600 font-mono mt-0.5">Army · Navy · AF</div>
             </div>
             <div class="reveal delay-500 hero-stat rounded-2xl p-4 md:p-5 text-center col-span-2 md:col-span-1">
                 <div class="font-heading text-2xl md:text-3xl font-bold text-white tracking-tight" data-count="8">0</div>
-                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5">MOD AGENCIES</div>
+                <div class="text-[10px] text-military-400 font-mono tracking-[0.2em] mt-1.5" data-en="MOD AGENCIES" data-si="ආරක්ෂක ආයතන">MOD AGENCIES</div>
                 <div class="text-[10px] text-gray-600 font-mono mt-0.5">ministry</div>
             </div>
         </div>
@@ -5950,6 +5956,25 @@ firstTd.innerHTML=`<img src="${c.p}" alt="${c.nm}" class="w-8 h-8 rounded-full o
   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) spotlight();
   // device: lazy-load offscreen images for mobile data
   document.querySelectorAll('img:not([loading])').forEach(img=>{ if(!img.closest('#hero')) img.loading='lazy'; });
+})();
+// Translate EN ↔ SI (Sinhala) — remembers choice
+(function(){
+  const btn=document.getElementById('translateBtn');
+  const label=document.getElementById('translateLabel');
+  let lang=localStorage.getItem('siteLang')||'en';
+  function apply(l){
+    lang=l;
+    document.documentElement.lang=l;
+    document.querySelectorAll('[data-en]').forEach(el=>{
+      const en=el.dataset.en, si=el.dataset.si;
+      if(en!==undefined && si!==undefined) el.textContent = l==='si' ? si : en;
+    });
+    if(label) label.textContent = l==='en' ? 'සිං' : 'EN';
+    if(btn) btn.setAttribute('aria-label', l==='en' ? 'Translate to Sinhala' : 'Translate to English');
+    localStorage.setItem('siteLang',l);
+  }
+  if(btn) btn.addEventListener('click', ()=> apply(lang==='en'?'si':'en'));
+  apply(lang);
 })();
 </script>
 
