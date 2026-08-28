@@ -5968,20 +5968,21 @@ firstTd.innerHTML=`<img src="${c.p}" alt="${c.nm}" class="w-8 h-8 rounded-full o
     "TOTAL PERSONNEL":"මුළු පිරිස්","NAVAL VESSELS":"නාවික යාත්‍රා","AIRCRAFT":"ගුවන් යානා","ARMED FORCES":"සන්නද්ධ හමුදා","MOD AGENCIES":"ආරක්ෂක ආයතන",
     "EXPLORE THE BRANCHES":"අංශ ගවේෂණය කරන්න","OVERVIEW":"දළ විශ්ලේෂණය","UNITS & COMMANDS":"ඒකක සහ අණදීම්","REGIMENTS":"රෙජිමේන්තු","VEHICLES":"වාහන","WEAPONS":"අවි","DIVISIONS":"සේනාංක","BASES":"කඳවුරු","FLEET":"නාවික බලඇණිය","WEAPONS SYSTEMS":"අවි පද්ධති","SPECIAL UNITS":"විශේෂ ඒකක","AREAS & BASES":"ප්‍රදේශ සහ කඳවුරු","FLYING SQUADRONS":"ගුවන් බලඝණ","COMBAT AIRCRAFT":"සටන් ගුවන් යානා","HELICOPTERS":"හෙලිකොප්ටර්","TRANSPORT":"ප්‍රවාහන","MARITIME PATROL":"සාගර මුර","UAVs & DRONES":"ඩ්‍රෝන","AIR DEFENCE":"ගුවන් ආරක්ෂාව",
     "ELITE UNITS":"ප්‍රභූ ඒකක","SPECIAL FORCES":"විශේෂ බලකා","INTELLIGENCE AGENCIES":"බුද්ධි ආයතන","SIGNALS & ELECTRONIC WARFARE":"සංඥා සහ විද්‍යුත් යුද්ධ","COMMS & EW":"සන්නිවේදන","DEFENSE PRODUCTION & RESEARCH":"ආරක්ෂක නිෂ්පාදන","TECHNOLOGY":"තාක්ෂණය","LOCALLY MANUFACTURED":"දේශීය නිෂ්පාදන","RESEARCH & DEVELOPMENT":"පර්යේෂණ සහ සංවර්ධන","UNIFORMS & FLAGS":"නිල ඇඳුම් සහ කොඩි","RANKS":"නිලයන්","DECORATIONS":"පදක්කම්","FLAGS & ENSIGNS":"කොඩි සහ ධජ",
+    "ORIGIN":"මූලාරම්භය","CALIBER":"කැලිබරය","HISTORY":"ඉතිහාසය","WHY IT IS USED":"භාවිතා කරන හේතුව","SERVICE RECORD":"සේවා වාර්තාව","ROLE":"භූමිකාව","DETAILS":"විස්තර","PARENT":"මව් ආයතනය","PARENT / REPORTING":"මව් ආයතනය / වාර්තා කිරීම","PARENT / SOURCE":"මව් ආයතනය / මූලාශ්‍රය","ROLE / DESCRIPTION":"භූමිකාව / විස්තරය","AWARD":"සම්මානය","CATEGORY":"ප්‍රවර්ගය","NOTES":"සටහන්","DUTIES & PARENT":"රාජකාරි සහ මව් ආයතනය","NOTABLE PAST DIRECTORS":"කැපී පෙනෙන හිටපු අධ්‍යක්ෂවරු","EST.":"ස්ථාපිත","ARM":"අංශය","COMMANDS":"අණදීම්","COMMANDS RESOURCES":"අණදීම් සම්පත්",
     "The complete picture of Sri Lanka's defence establishment — Army, Navy, Air Force, Police and the agencies of the Ministry of Defence that keep the nation secure. Compiled from public records. Not for operational use.":"ශ්‍රී ලංකාවේ ආරක්ෂක ආයතනයේ සම්පූර්ණ චිත්‍රය — යුද්ධ, නාවික, ගුවන්, පොලිස් සහ ආරක්ෂක අමාත්‍යාංශයේ ආයතන. පොදු වාර්තා වලින් සම්පාදිතයි. මෙහෙයුම් භාවිතය සඳහා නොවේ.",
     "The complete picture of Sri Lanka's defence establishment — the Army, Navy, Air Force and Police, and the agencies of the Ministry of Defence that keep the nation secure.":"ශ්‍රී ලංකාවේ ආරක්ෂක ආයතනයේ සම්පූර්ණ චිත්‍රය — යුද්ධ, නාවික, ගුවන්, පොලිස් සහ ආරක්ෂක අමාත්‍යාංශයේ ආයතන.",
     "Compiled from public records. Not for operational use.":"පොදු වාර්තා වලින් සම්පාදිතයි. මෙහෙයුම් භාවිතය සඳහා නොවේ."
   };
   let lang=localStorage.getItem('siteLang')||'en';
   const rev={}; Object.entries(dict).forEach(([en,si])=>{ rev[si]=en; });
-  function walkAndReplace(fromDict){
-    const walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+  function walkAndReplace(fromDict, root){
+    const scope=root||document.body;
+    const walker=document.createTreeWalker(scope, NodeFilter.SHOW_TEXT, {
       acceptNode: (n)=>{
         if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
         const p=n.parentElement;
         if(!p) return NodeFilter.FILTER_REJECT;
         if(p.tagName==='SCRIPT'||p.tagName==='STYLE'||p.tagName==='NOSCRIPT') return NodeFilter.FILTER_REJECT;
-        if(p.closest('#regimentModal, #weaponModal, #divisionModal, #commanderModal, #lightbox')) return NodeFilter.FILTER_REJECT;
         return NodeFilter.FILTER_ACCEPT;
       }
     });
@@ -6004,14 +6005,36 @@ firstTd.innerHTML=`<img src="${c.p}" alt="${c.nm}" class="w-8 h-8 rounded-full o
       const en=el.dataset.en, si=el.dataset.si;
       if(en!==undefined && si!==undefined) el.textContent = l==='si' ? si : en;
     });
-    // 2) dictionary for everything else
+    // 2) dictionary for everything else (now includes popups)
     const d = l==='si' ? dict : rev;
-    // only walk if switching to si (en->si) or back (si->en) — rev handles back
     if(Object.keys(d).length) walkAndReplace(d);
+    // 3) also translate any open modal content (modals are dynamic)
+    document.querySelectorAll('#regimentModalContent, #weaponModalContent, #divisionModalContent, #commanderModalContent').forEach(modalEl=>{
+      if(modalEl && modalEl.textContent.trim()) walkAndReplace(d, modalEl);
+    });
     if(label) label.textContent = l==='en' ? 'සිං' : 'EN';
     if(btn) btn.setAttribute('aria-label', l==='en' ? 'Translate to Sinhala' : 'Translate to English');
     localStorage.setItem('siteLang',l);
   }
+  // expose for modal openers to call after injecting content
+  window.applyCurrentLangToModals = function(){
+    if(lang==='si') walkAndReplace(dict);
+    else walkAndReplace(rev);
+    document.querySelectorAll('#regimentModalContent, #weaponModalContent, #divisionModalContent, #commanderModalContent').forEach(el=>{
+      if(el) walkAndReplace(lang==='si'?dict:rev, el);
+    });
+  };
+  window.getCurrentLang = ()=> lang;
+  // auto-translate any new modal content
+  const modalObserver=new MutationObserver((muts)=>{
+    if(lang!=='si') return;
+    muts.forEach(m=>{
+      if(m.type==='childList' && m.target) walkAndReplace(dict, m.target);
+    });
+  });
+  document.querySelectorAll('#regimentModalContent, #weaponModalContent, #divisionModalContent, #commanderModalContent').forEach(el=>{
+    if(el) modalObserver.observe(el, {childList:true, subtree:true});
+  });
   if(btn) btn.addEventListener('click', ()=> apply(lang==='en'?'si':'en'));
   apply(lang);
 })();
