@@ -171,11 +171,11 @@
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-military-900/40 border border-military-700/30 backdrop-blur text-[10px] font-mono tracking-[0.25em] text-military-400 mb-6 reveal">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> MINISTRY OF DEFENCE · SRI LANKA — PUBLIC RECORD DOSSIER
         </div>
-        <h1 class="font-heading text-5xl md:text-7xl lg:text-[84px] font-bold text-white tracking-[-0.02em] leading-[0.9] reveal" data-en="SRI LANKAN DEFENSE POWER" data-si="ශ්‍රී ලාංකික ආරක්ෂක බලය">SRI LANKAN<br><span class="shiny-text">DEFENSE POWER</span></h1>
-        <p class="text-gray-400 max-w-2xl mx-auto mt-6 text-[15px] leading-relaxed reveal delay-100" data-en="The complete picture of Sri Lanka's defence establishment — Army, Navy, Air Force, Police and the agencies of the Ministry of Defence that keep the nation secure. Compiled from public records. Not for operational use." data-si="ශ්‍රී ලංකාවේ ආරක්ෂක ආයතනයේ සම්පූර්ණ චිත්‍රය — යුද්ධ, නාවික, ගුවන්, පොලිස් සහ ආරක්ෂක අමාත්‍යාංශයේ ආයතන. පොදු වාර්තා වලින් සම්පාදිතයි. මෙහෙයුම් භාවිතය සඳහා නොවේ.">The complete picture of Sri Lanka's defence establishment — Army, Navy, Air Force, Police and the agencies of the Ministry of Defence that keep the nation secure. <span class="text-gray-500">Compiled from public records. Not for operational use.</span></p>
+        <h1 class="font-heading text-5xl md:text-7xl lg:text-[84px] font-bold text-white tracking-[-0.02em] leading-[0.9] reveal">SRI LANKAN<br><span class="shiny-text">DEFENSE POWER</span></h1>
+        <p class="text-gray-400 max-w-2xl mx-auto mt-6 text-[15px] leading-relaxed reveal delay-100">The complete picture of Sri Lanka's defence establishment — Army, Navy, Air Force, Police and the agencies of the Ministry of Defence that keep the nation secure. <span class="text-gray-500">Compiled from public records. Not for operational use.</span></p>
         <div class="flex flex-wrap justify-center gap-3 mt-8 reveal delay-200">
-            <a href="#army" class="group relative px-7 py-3 bg-military-700 hover:bg-military-600 text-white font-heading font-semibold tracking-wider rounded-full transition-all overflow-hidden" data-en="EXPLORE THE BRANCHES →" data-si="අංශ ගවේෂණය කරන්න →">EXPLORE THE BRANCHES <span class="group-hover:translate-x-1 transition-transform">→</span></a>
-            <a href="#mod" class="px-7 py-3 rounded-full border border-military-700/60 hover:border-military-600 hover:bg-military-900/40 text-military-300 font-heading font-semibold tracking-wider transition-colors backdrop-blur" data-en="MINISTRY OF DEFENCE" data-si="ආරක්ෂක අමාත්‍යාංශය">MINISTRY OF DEFENCE</a>
+            <a href="#army" class="group relative px-7 py-3 bg-military-700 hover:bg-military-600 text-white font-heading font-semibold tracking-wider rounded-full transition-all overflow-hidden"><span class="relative z-10 flex items-center gap-2">EXPLORE THE BRANCHES <span class="group-hover:translate-x-1 transition-transform">→</span></span><span class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span></a>
+            <a href="#mod" class="px-7 py-3 rounded-full border border-military-700/60 hover:border-military-600 hover:bg-military-900/40 text-military-300 font-heading font-semibold tracking-wider transition-colors backdrop-blur">MINISTRY OF DEFENCE</a>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 mt-14 max-w-5xl mx-auto">
             <div class="reveal delay-100 hero-stat rounded-2xl p-4 md:p-5 text-center">
@@ -5957,18 +5957,57 @@ firstTd.innerHTML=`<img src="${c.p}" alt="${c.nm}" class="w-8 h-8 rounded-full o
   // device: lazy-load offscreen images for mobile data
   document.querySelectorAll('img:not([loading])').forEach(img=>{ if(!img.closest('#hero')) img.loading='lazy'; });
 })();
-// Translate EN ↔ SI (Sinhala) — remembers choice
+// Translate EN ↔ SI — full site, dictionary + data-attrs
 (function(){
   const btn=document.getElementById('translateBtn');
   const label=document.getElementById('translateLabel');
+  const dict={
+    "MINISTRY":"අමාත්‍යාංශය","ARMY":"යුද්ධ හමුදාව","NAVY":"නාවික හමුදාව","AIR FORCE":"ගුවන් හමුදාව","POLICE":"පොලිසිය",
+    "SRI LANKAN DEFENSE POWER":"ශ්‍රී ලාංකික ආරක්ෂක බලය","DEFENSE POWER":"ආරක්ෂක බලය",
+    "MINISTRY OF DEFENCE":"ආරක්ෂක අමාත්‍යාංශය","SRI LANKA ARMY":"ශ්‍රී ලංකා යුද්ධ හමුදාව","SRI LANKA NAVY":"ශ්‍රී ලංකා නාවික හමුදාව","SRI LANKA AIR FORCE":"ශ්‍රී ලංකා ගුවන් හමුදාව","SRI LANKA POLICE":"ශ්‍රී ලංකා පොලිසිය",
+    "TOTAL PERSONNEL":"මුළු පිරිස්","NAVAL VESSELS":"නාවික යාත්‍රා","AIRCRAFT":"ගුවන් යානා","ARMED FORCES":"සන්නද්ධ හමුදා","MOD AGENCIES":"ආරක්ෂක ආයතන",
+    "EXPLORE THE BRANCHES":"අංශ ගවේෂණය කරන්න","OVERVIEW":"දළ විශ්ලේෂණය","UNITS & COMMANDS":"ඒකක සහ අණදීම්","REGIMENTS":"රෙජිමේන්තු","VEHICLES":"වාහන","WEAPONS":"අවි","DIVISIONS":"සේනාංක","BASES":"කඳවුරු","FLEET":"නාවික බලඇණිය","WEAPONS SYSTEMS":"අවි පද්ධති","SPECIAL UNITS":"විශේෂ ඒකක","AREAS & BASES":"ප්‍රදේශ සහ කඳවුරු","FLYING SQUADRONS":"ගුවන් බලඝණ","COMBAT AIRCRAFT":"සටන් ගුවන් යානා","HELICOPTERS":"හෙලිකොප්ටර්","TRANSPORT":"ප්‍රවාහන","MARITIME PATROL":"සාගර මුර","UAVs & DRONES":"ඩ්‍රෝන","AIR DEFENCE":"ගුවන් ආරක්ෂාව",
+    "ELITE UNITS":"ප්‍රභූ ඒකක","SPECIAL FORCES":"විශේෂ බලකා","INTELLIGENCE AGENCIES":"බුද්ධි ආයතන","SIGNALS & ELECTRONIC WARFARE":"සංඥා සහ විද්‍යුත් යුද්ධ","COMMS & EW":"සන්නිවේදන","DEFENSE PRODUCTION & RESEARCH":"ආරක්ෂක නිෂ්පාදන","TECHNOLOGY":"තාක්ෂණය","LOCALLY MANUFACTURED":"දේශීය නිෂ්පාදන","RESEARCH & DEVELOPMENT":"පර්යේෂණ සහ සංවර්ධන","UNIFORMS & FLAGS":"නිල ඇඳුම් සහ කොඩි","RANKS":"නිලයන්","DECORATIONS":"පදක්කම්","FLAGS & ENSIGNS":"කොඩි සහ ධජ",
+    "The complete picture of Sri Lanka's defence establishment — Army, Navy, Air Force, Police and the agencies of the Ministry of Defence that keep the nation secure. Compiled from public records. Not for operational use.":"ශ්‍රී ලංකාවේ ආරක්ෂක ආයතනයේ සම්පූර්ණ චිත්‍රය — යුද්ධ, නාවික, ගුවන්, පොලිස් සහ ආරක්ෂක අමාත්‍යාංශයේ ආයතන. පොදු වාර්තා වලින් සම්පාදිතයි. මෙහෙයුම් භාවිතය සඳහා නොවේ.",
+    "The complete picture of Sri Lanka's defence establishment — the Army, Navy, Air Force and Police, and the agencies of the Ministry of Defence that keep the nation secure.":"ශ්‍රී ලංකාවේ ආරක්ෂක ආයතනයේ සම්පූර්ණ චිත්‍රය — යුද්ධ, නාවික, ගුවන්, පොලිස් සහ ආරක්ෂක අමාත්‍යාංශයේ ආයතන.",
+    "Compiled from public records. Not for operational use.":"පොදු වාර්තා වලින් සම්පාදිතයි. මෙහෙයුම් භාවිතය සඳහා නොවේ."
+  };
   let lang=localStorage.getItem('siteLang')||'en';
+  const rev={}; Object.entries(dict).forEach(([en,si])=>{ rev[si]=en; });
+  function walkAndReplace(fromDict){
+    const walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: (n)=>{
+        if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const p=n.parentElement;
+        if(!p) return NodeFilter.FILTER_REJECT;
+        if(p.tagName==='SCRIPT'||p.tagName==='STYLE'||p.tagName==='NOSCRIPT') return NodeFilter.FILTER_REJECT;
+        if(p.closest('#regimentModal, #weaponModal, #divisionModal, #commanderModal, #lightbox')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    let n;
+    while(n=walker.nextNode()){
+      const orig=n.nodeValue;
+      const key=orig.trim();
+      if(fromDict[key]!==undefined){
+        // preserve leading/trailing whitespace
+        const lead=orig.match(/^\s*/)[0], trail=orig.match(/\s*$/)[0];
+        n.nodeValue=lead+fromDict[key]+trail;
+      }
+    }
+  }
   function apply(l){
     lang=l;
     document.documentElement.lang=l;
+    // 1) data-attrs (precise)
     document.querySelectorAll('[data-en]').forEach(el=>{
       const en=el.dataset.en, si=el.dataset.si;
       if(en!==undefined && si!==undefined) el.textContent = l==='si' ? si : en;
     });
+    // 2) dictionary for everything else
+    const d = l==='si' ? dict : rev;
+    // only walk if switching to si (en->si) or back (si->en) — rev handles back
+    if(Object.keys(d).length) walkAndReplace(d);
     if(label) label.textContent = l==='en' ? 'සිං' : 'EN';
     if(btn) btn.setAttribute('aria-label', l==='en' ? 'Translate to Sinhala' : 'Translate to English');
     localStorage.setItem('siteLang',l);
