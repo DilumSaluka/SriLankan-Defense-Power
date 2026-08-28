@@ -1,0 +1,171 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "commanders.js",
+      "file_type": "code",
+      "source_file": "commanders.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "commanders",
+      "community": 0,
+      "norm_label": "commanders.js"
+    },
+    {
+      "label": "DB",
+      "file_type": "code",
+      "source_file": "commanders.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "commanders_db",
+      "community": 0,
+      "norm_label": "db"
+    },
+    {
+      "label": "openCommanderModal()",
+      "file_type": "code",
+      "source_file": "commanders.js",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "commanders_opencommandermodal",
+      "community": 0,
+      "norm_label": "opencommandermodal()"
+    },
+    {
+      "label": "closeCommanderModal()",
+      "file_type": "code",
+      "source_file": "commanders.js",
+      "source_location": "L180",
+      "_origin": "ast",
+      "id": "commanders_closecommandermodal",
+      "community": 0,
+      "norm_label": "closecommandermodal()"
+    },
+    {
+      "label": "renderCommanderCard()",
+      "file_type": "code",
+      "source_file": "commanders.js",
+      "source_location": "L187",
+      "_origin": "ast",
+      "id": "commanders_rendercommandercard",
+      "community": 0,
+      "norm_label": "rendercommandercard()"
+    },
+    {
+      "label": "weapons.js",
+      "file_type": "code",
+      "source_file": "weapons.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "weapons",
+      "community": 1,
+      "norm_label": "weapons.js"
+    },
+    {
+      "label": "WEAPONS",
+      "file_type": "code",
+      "source_file": "weapons.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "weapons_weapons",
+      "community": 1,
+      "norm_label": "weapons"
+    },
+    {
+      "label": "openWeaponModal()",
+      "file_type": "code",
+      "source_file": "weapons.js",
+      "source_location": "L1103",
+      "_origin": "ast",
+      "id": "weapons_openweaponmodal",
+      "community": 1,
+      "norm_label": "openweaponmodal()"
+    },
+    {
+      "label": "closeWeaponModal()",
+      "file_type": "code",
+      "source_file": "weapons.js",
+      "source_location": "L1150",
+      "_origin": "ast",
+      "id": "weapons_closeweaponmodal",
+      "community": 1,
+      "norm_label": "closeweaponmodal()"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "commanders.js",
+      "source_location": "L180",
+      "weight": 1.0,
+      "source": "commanders",
+      "target": "commanders_closecommandermodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "commanders.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "commanders",
+      "target": "commanders_db",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "commanders.js",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "commanders",
+      "target": "commanders_opencommandermodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "commanders.js",
+      "source_location": "L187",
+      "weight": 1.0,
+      "source": "commanders",
+      "target": "commanders_rendercommandercard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "weapons.js",
+      "source_location": "L1150",
+      "weight": 1.0,
+      "source": "weapons",
+      "target": "weapons_closeweaponmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "weapons.js",
+      "source_location": "L1103",
+      "weight": 1.0,
+      "source": "weapons",
+      "target": "weapons_openweaponmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "weapons.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "weapons",
+      "target": "weapons_weapons",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "c7688349b1312b66311bac11de610f08a53cc25a"
+}
